@@ -89,6 +89,7 @@ class EventModuleTest(unittest.TestCase):
         pygame.display.init()
         pygame.event.clear()
         self.assert_(not pygame.event.get())
+        pygame.display.set_mode( (1024, 768), pygame.FULLSCREEN)
 
     def tearDown(self):
         pygame.display.quit()
