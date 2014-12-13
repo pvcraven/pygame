@@ -640,9 +640,11 @@ set_grab (PyObject* self, PyObject* arg)
 
     if (doit) {
         printf("set_grab On");
+        fputs("set_grab On X", stderr);
         SDL_WM_GrabInput (SDL_GRAB_ON);
     } else {
         printf("set_grab Off");
+        fputs("set_grab Off X", stderr);
         SDL_WM_GrabInput (SDL_GRAB_OFF);
     }
 
