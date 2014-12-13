@@ -233,17 +233,17 @@ class EventModuleTest(unittest.TestCase):
         # see it doesn't cause an error
         pygame.event.pump()
 
-    def test_set_grab__and_get_symmetric(self):
+    def test_set_grab_and_get_symmetric(self):
 
         # __doc__ (as of 2008-06-25) for pygame.event.set_grab:
 
           # pygame.event.set_grab(bool): return None
           # control the sharing of input devices with other applications
 
-        pygame.event.set_grab(True)
-        self.assert_(pygame.event.get_grab(), 'set_grab(True) did not work')
+        result = pygame.event.set_grab(True)
+        self.assert_(pygame.event.get_grab(), 'set_grab(True) did not work. Result: '+str(result))
         pygame.event.set_grab(False)
-        self.assert_(not pygame.event.get_grab(), 'set_grab(False) did not work')
+        self.assert_(not pygame.event.get_grab(), 'set_grab(False) did not work. Result: '+str(result))
 
     def test_event_equality(self):
         a = pygame.event.Event(1, a=1)
