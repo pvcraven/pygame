@@ -633,10 +633,13 @@ event_name (PyObject* self, PyObject* arg)
 static PyObject*
 set_grab (PyObject* self, PyObject* arg)
 {
+    printf("AA");
+    fputs("AA", stderr);
+
     int doit;
     if (!PyArg_ParseTuple (arg, "i", &doit))
         return NULL;
-    VIDEO_INIT_CHECK ();
+    //VIDEO_INIT_CHECK ();
 
     if (doit) {
         printf("set_grab On");
