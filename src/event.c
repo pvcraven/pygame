@@ -638,10 +638,13 @@ set_grab (PyObject* self, PyObject* arg)
         return NULL;
     VIDEO_INIT_CHECK ();
 
-    if (doit)
+    if (doit) {
+        printf("set_grab On");
         SDL_WM_GrabInput (SDL_GRAB_ON);
-    else
+    } else {
+        printf("set_grab Off");
         SDL_WM_GrabInput (SDL_GRAB_OFF);
+    }
 
     Py_RETURN_NONE;
 }
@@ -653,6 +656,7 @@ get_grab (PyObject* self, PyObject* arg)
 
     VIDEO_INIT_CHECK ();
     mode = SDL_WM_GrabInput (SDL_GRAB_QUERY);
+    printf("get_grab %d", mode);
     return PyInt_FromLong (mode == SDL_GRAB_ON);
 }
 
