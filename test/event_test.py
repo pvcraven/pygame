@@ -242,7 +242,7 @@ class EventModuleTest(unittest.TestCase):
 
         set_grab_result = pygame.event.set_grab(True)
         get_grab_result = pygame.event.get_grab()
-        self.assert_(get_grab, "set_grab(True) did not work. ({},{})".format(set_grab_result, get_grab_result))
+        self.assert_(pygame.event.get_grab(), "set_grab(True) did not work. ({},{})".format(set_grab_result, get_grab_result))
         pygame.event.set_grab(False)
         self.assert_(not pygame.event.get_grab(), 'set_grab(False) did not work. Result: '+str(result))
 
