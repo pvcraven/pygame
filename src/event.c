@@ -638,7 +638,7 @@ set_grab (PyObject* self, PyObject* arg)
 
     int doit;
     if (!PyArg_ParseTuple (arg, "i", &doit))
-        return return PyInt_FromLong (4);;
+        return PyInt_FromLong (4);;
     VIDEO_INIT_CHECK ();
 
     if (doit) {
