@@ -638,19 +638,21 @@ set_grab (PyObject* self, PyObject* arg)
 
     int doit;
     if (!PyArg_ParseTuple (arg, "i", &doit))
-        return NULL;
-    //VIDEO_INIT_CHECK ();
+        return return PyInt_FromLong (4);;
+    VIDEO_INIT_CHECK ();
 
     if (doit) {
         printf("set_grab On");
         fputs("set_grab On X", stderr);
         SDL_WM_GrabInput (SDL_GRAB_ON);
+        return PyInt_FromLong (1);
     } else {
         printf("set_grab Off");
         fputs("set_grab Off X", stderr);
         SDL_WM_GrabInput (SDL_GRAB_OFF);
+        return PyInt_FromLong (2);
     }
-
+    return PyInt_FromLong (3);
     Py_RETURN_NONE;
 }
 

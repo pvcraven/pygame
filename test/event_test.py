@@ -240,8 +240,9 @@ class EventModuleTest(unittest.TestCase):
           # pygame.event.set_grab(bool): return None
           # control the sharing of input devices with other applications
 
-        result = pygame.event.set_grab(True)
-        self.assert_(pygame.event.get_grab(), 'set_grab(True) did not work. Result: '+str(result))
+        set_grab_result = pygame.event.set_grab(True)
+        get_grab_result = pygame.event.get_grab()
+        self.assert_(get_grab, "set_grab(True) did not work. ({},{})".format(set_grab_result, get_grab_result))
         pygame.event.set_grab(False)
         self.assert_(not pygame.event.get_grab(), 'set_grab(False) did not work. Result: '+str(result))
 
