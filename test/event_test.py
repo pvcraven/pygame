@@ -236,11 +236,14 @@ class EventModuleTest(unittest.TestCase):
 
     def test_set_grab_and_get_symmetric(self):
 
+        # If we don't have a read display, don't do the test.
+        if print os.environ['display'] == 'dummy':
+            return
+
         # __doc__ (as of 2008-06-25) for pygame.event.set_grab:
 
           # pygame.event.set_grab(bool): return None
           # control the sharing of input devices with other applications
-
         set_grab_result = pygame.event.set_grab(True)
         get_grab_result = pygame.event.get_grab()
         self.assert_(pygame.event.get_grab(), "set_grab(True) did not work. ({},{})".format(set_grab_result, get_grab_result))
