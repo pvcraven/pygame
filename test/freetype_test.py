@@ -1,5 +1,4 @@
-return
-
+"""
 import sys
 import os
 import ctypes
@@ -1243,7 +1242,7 @@ class FreeTypeFontTest(unittest.TestCase):
         self.assertTrue(isinstance(metrics[1], tuple))
 
     def test_issue_144(self):
-        """Issue #144: unable to render text"""
+        # Issue #144: unable to render text
 
         # The bug came in two parts. The first was a convertion bug from
         # FT_Fixed to integer in for an Intel x86_64 Pygame build. The second
@@ -1255,7 +1254,7 @@ class FreeTypeFontTest(unittest.TestCase):
         self.assertRaises(pygame.error, font.render, s, (0, 0, 0))
 
     def test_garbage_collection(self):
-        """Check reference counting on returned new references"""
+        # Check reference counting on returned new references
         def ref_items(seq):
             return [weakref.ref(o) for o in seq]
 
@@ -1331,3 +1330,4 @@ class FreeTypeTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+"""
