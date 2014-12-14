@@ -273,8 +273,7 @@ class MixerModuleTest(unittest.TestCase):
             mixer.quit()
 
     def test_array_keyword(self):
-        # If we don't have a real display, don't do this test.
-        # Transparent background doesn't seem to work without a read video card.
+        # If we don't have a real sound card don't do this test because it will fail.
         if 'SDL_AUDIODRIVER' in os.environ and os.environ['SDL_AUDIODRIVER'] == 'disk':
             return        
         try:
