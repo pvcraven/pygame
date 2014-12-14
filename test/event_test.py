@@ -238,7 +238,7 @@ class EventModuleTest(unittest.TestCase):
     def test_set_grab_and_get_symmetric(self):
 
         # If we don't have a read display, don't do the test.
-        if os.environ['display'] == 'dummy':
+        if 'SDL_VIDEODRIVER' in os.environ and os.environ['SDL_VIDEODRIVER'] == 'dummy':
             return
 
         # __doc__ (as of 2008-06-25) for pygame.event.set_grab:
