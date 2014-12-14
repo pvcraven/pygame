@@ -1,9 +1,8 @@
-import os
 #################################### IMPORTS ###################################
+import os
 
 if __name__ == '__main__':
     import sys
-    import os
     pkg_dir = os.path.split(os.path.abspath(__file__))[0]
     parent_dir, pkg_name = os.path.split(pkg_dir)
     is_pygame_pkg = (pkg_name == 'tests' and
@@ -29,11 +28,11 @@ class EventTypeTest(unittest.TestCase):
           # pygame.event.Event(type, dict): return Event
           # pygame.event.Event(type, **attributes): return Event
           # create a new event object
-          #
+          # 
           # Creates a new event with the given type. The event is created with
           # the given attributes and values. The attributes can come from a
           # dictionary argument, or as string keys from a dictionary.
-          #
+          # 
           # The given attributes will be readonly attributes on the new event
           # object itself. These are the only attributes on the Event object,
           # there are no methods attached to Event objects.
@@ -79,7 +78,7 @@ class EventTypeTest(unittest.TestCase):
 
 
 race_condition_notification = """
-This test is dependent on timing. The event queue is cleared in preparation for
+This test is dependent on timing. The event queue is cleared in preparation for 
 tests. There is a small window where outside events from the OS may have effected
 results. Try running the test again.
 """
@@ -90,19 +89,18 @@ class EventModuleTest(unittest.TestCase):
         pygame.display.init()
         pygame.event.clear()
         self.assert_(not pygame.event.get())
-        pygame.display.set_mode( (1024, 768), pygame.FULLSCREEN)
 
     def tearDown(self):
         pygame.display.quit()
 
     def test_set_blocked(self):
         # __doc__ (as of 2008-06-25) for pygame.event.set_blocked:
-
+    
           # pygame.event.set_blocked(type): return None
           # pygame.event.set_blocked(typelist): return None
           # pygame.event.set_blocked(None): return None
           # control which events are allowed on the queue
-
+        
         pygame.event.set_blocked(2)
 
         self.assert_(pygame.event.get_blocked(2))
@@ -111,9 +109,9 @@ class EventModuleTest(unittest.TestCase):
 
         events = pygame.event.get()
         should_be_blocked = [e for e in events if e.type == 2]
-
+        
         self.assertEquals(should_be_blocked, [])
-
+                
     def test_post__and_poll(self):
         # __doc__ (as of 2008-06-25) for pygame.event.post:
 
@@ -128,7 +126,7 @@ class EventModuleTest(unittest.TestCase):
         self.assertEquals (
             e1.attr1, posted_event.attr1, race_condition_notification
         )
-
+        
         # fuzzing event types
         for i in range(1, 11):
             pygame.event.post(pygame.event.Event(i))
@@ -169,7 +167,7 @@ class EventModuleTest(unittest.TestCase):
 
         for _ in range(1, 11):
             pygame.event.post(pygame.event.Event(_))
-
+        
         self.assert_(pygame.event.poll())  # there are some events on queue
 
         pygame.event.clear()
@@ -194,7 +192,7 @@ class EventModuleTest(unittest.TestCase):
 
         pygame.event.post ( pygame.event.Event(2) )
         self.assert_(pygame.event.wait())
-
+        
     def test_peek(self):
 
         # __doc__ (as of 2008-06-25) for pygame.event.peek:
@@ -231,25 +229,25 @@ class EventModuleTest(unittest.TestCase):
 
           # pygame.event.pump(): return None
           # internally process pygame event handlers
-
+        
         # see it doesn't cause an error
         pygame.event.pump()
 
-    def test_set_grab_and_get_symmetric(self):
-
-        # If we don't have a read display, don't do the test.
-        if 'SDL_VIDEODRIVER' in os.environ and os.environ['SDL_VIDEODRIVER'] == 'dummy':
-            return
+    def test_set_grab__and_get_symmetric(self):
 
         # __doc__ (as of 2008-06-25) for pygame.event.set_grab:
 
           # pygame.event.set_grab(bool): return None
           # control the sharing of input devices with other applications
-        set_grab_result = pygame.event.set_grab(True)
-        get_grab_result = pygame.event.get_grab()
-        self.assert_(pygame.event.get_grab(), "set_grab(True) did not work. ({},{})".format(set_grab_result, get_grab_result))
+
+        # If we don't have a read display, don't do the test.
+        if 'SDL_VIDEODRIVER' in os.environ and os.environ['SDL_VIDEODRIVER'] == 'dummy':
+            return
+
+        pygame.event.set_grab(True)
+        self.assert_(pygame.event.get_grab())
         pygame.event.set_grab(False)
-        self.assert_(not pygame.event.get_grab(), 'set_grab(False) did not work. Result: '+str(result))
+        self.assert_(not pygame.event.get_grab())
 
     def test_event_equality(self):
         a = pygame.event.Event(1, a=1)
@@ -265,17 +263,17 @@ class EventModuleTest(unittest.TestCase):
         self.failIf(a == c)
         self.failUnless(a != d)
         self.failIf(a == d)
-
+        
     def todo_test_get_blocked(self):
 
         # __doc__ (as of 2008-08-02) for pygame.event.get_blocked:
 
           # pygame.event.get_blocked(type): return bool
           # test if a type of event is blocked from the queue
-          #
-          # Returns true if the given event type is blocked from the queue.
+          # 
+          # Returns true if the given event type is blocked from the queue. 
 
-        self.fail()
+        self.fail() 
 
     def todo_test_get_grab(self):
 
@@ -283,12 +281,12 @@ class EventModuleTest(unittest.TestCase):
 
           # pygame.event.get_grab(): return bool
           # test if the program is sharing input devices
-          #
+          # 
           # Returns true when the input events are grabbed for this application.
           # Use pygame.event.set_grab() to control this state.
-          #
+          # 
 
-        self.fail()
+        self.fail() 
 
     def todo_test_poll(self):
 
@@ -296,13 +294,13 @@ class EventModuleTest(unittest.TestCase):
 
           # pygame.event.poll(): return Event
           # get a single event from the queue
-          #
+          # 
           # Returns a single event from the queue. If the event queue is empty
           # an event of type pygame.NOEVENT will be returned immediately. The
           # returned event is removed from the queue.
-          #
+          # 
 
-        self.fail()
+        self.fail() 
 
 ################################################################################
 
