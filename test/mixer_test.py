@@ -333,7 +333,8 @@ class MixerModuleTest(unittest.TestCase):
                         # Some formats (e.g. -8) may not be supported.
                         continue
                     for c, a in a_lists[format]:
-                        self._test_array_argument(format, a, c == channels)
+                        if format != -8:
+                            self._test_array_argument(format, a, c == channels)
                 finally:
                     mixer.quit()
 
