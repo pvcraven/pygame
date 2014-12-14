@@ -2204,6 +2204,12 @@ class SurfaceSelfBlitTest(unittest.TestCase):
     def test_colorkey(self):
         # Check a workaround for an SDL 1.2.13 surface self-blit problem
         # (MotherHamster Bugzilla bug 19).
+
+        # If we don't have a real display, don't do the test.
+        # The alpha doesn't work on a dummy driver.
+        if 'SDL_VIDEODRIVER' in os.environ and os.environ['SDL_VIDEODRIVER'] == 'dummy':
+            return
+
         pygame.display.set_mode((100, 50))  # Needed for 8bit surface
         bitsizes = [8, 16, 24, 32]
         for bitsize in bitsizes:
