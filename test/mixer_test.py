@@ -274,8 +274,9 @@ class MixerModuleTest(unittest.TestCase):
 
     def test_array_keyword(self):
         # If we don't have a real sound card don't do this test because it will fail.
-        if 'SDL_AUDIODRIVER' in os.environ and os.environ['SDL_AUDIODRIVER'] == 'disk':
+        if os.environ.get('SDL_AUDIODRIVER') == 'disk':
             return        
+        
         try:
             from numpy import (array, arange, zeros,
                                int8, uint8,
@@ -336,8 +337,7 @@ class MixerModuleTest(unittest.TestCase):
                         # Some formats (e.g. -8) may not be supported.
                         continue
                     for c, a in a_lists[format]:
-                        if format != -8:
-                            self._test_array_argument(format, a, c == channels)
+                        self._test_array_argument(format, a, c == channels)
                 finally:
                     mixer.quit()
 
